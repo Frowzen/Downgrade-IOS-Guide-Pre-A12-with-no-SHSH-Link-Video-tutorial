@@ -36,6 +36,7 @@ HUGE THANKS TO galaxy#6181 without him I wouldn't have known all this to write a
 IF YOU NEED HELP JOIN THIS DISCORD: https://discord.gg/TqVH6NBwS3 ( BE SURE TO RESEARCH YOURSELF FIRST )
 
 REQUIREMENTS:
+-(MacOS SYSTEM)
 - irecovery
 - futurerestore
 - pyimg4 ( pip3 install pyimg4 ) ( MAKE SURE YOU UPDATED PYTHON AND NOT USING THE BUNDLED ONE! )
