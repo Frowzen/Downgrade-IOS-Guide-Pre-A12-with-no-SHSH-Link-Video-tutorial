@@ -4,7 +4,7 @@ A lot of people clearly don’t understand this.
 
 Summed up.
 
-IF YOU DON’T UNDERSTAND, IT’S NOT FOR YOU.
+#IF YOU DON’T UNDERSTAND, IT’S NOT FOR YOU#
 
 Tethered means every time your phone dies, turns off, or reboots, it’s a brick. NO you can’t put some secret button combo in to make it work. It’s a fucking brick, UNTIL you put it back into a mac to run some code.
 
@@ -46,7 +46,7 @@ REQUIREMENTS:
 - asr64_patcher ( https://github.com/exploit3dguy/asr64_patcher )
 Make sure to use the forks listed above.
 
-Downgrade portion:
+#Downgrade portion:
 
 1. Grab yourself your ipsw for iOS 14.3 
 2. Extract it and grab yourself your kernel cache and restore_ramdisk 
@@ -77,7 +77,7 @@ pyimg4 im4p create -i krnl.patched -o krnl.im4p --extra kpp.bin -f rkrn --lzss (
 ( MAKE SURE YOU ARE IN PWNDFU WITH SIGCHECKS REMOVED! )
 futurerestore -t shsh.shsh2 --use-pwndfu --skip-blob --rdsk ramdisk.im4p --rkrn krnl.im4p --latest-sep --latest-baseband ipsw.ipsw
 
-Boot portion:
+#Boot portion:
 
 1. Prepare your ibss, ibec, devicetree, rootfs_trustcache and kernelcache 
 2. Prepare your iv keys for ibss and ibec. 
