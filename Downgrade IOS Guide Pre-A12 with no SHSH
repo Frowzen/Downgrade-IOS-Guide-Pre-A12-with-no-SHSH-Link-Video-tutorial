@@ -32,7 +32,9 @@ you do: pyimg4 im4p extract -i kernelcache -o kcache.raw
 If you have A12+ you CANNOT downgrade at all because the device does not have a bootrom exploit!
 iPhone 13 series cannot downgrade to iOS 14 because it does NOT exist for that device
 
-REQUIREMENTS:
+(Please visit each of the links attached to this guide before starting with all the following steps)
+
+#REQUIREMENTS:
 -(MacOS SYSTEM)
 - irecovery
 - futurerestore
@@ -104,9 +106,11 @@ pyimg4 img4 create -p krnlboot.im4p -o krnlboot.img4 -m IM4M
 
 irecovery -f iBSS.img4
 irecovery -f iBEC.img4
-If you have a10 or higher use this:
---------------------------------
+
+If you have A10 or higher use this:
 irecovery -c go
+
+
 --------------------------------
 irecovery -f devicetree.img4
 irecovery -c devicetree
