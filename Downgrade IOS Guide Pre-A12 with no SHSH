@@ -111,7 +111,7 @@ If you have A10 or higher use this:
 irecovery -c go
 
 
---------------------------------
+---------------------------------
 irecovery -f devicetree.img4
 irecovery -c devicetree
 # if you have firmware add them here like this:
@@ -127,4 +127,7 @@ irecovery -c bootx
 ---------------------------------
 
 -FrøwZen
+---------------------------------
+-A tool for downgrading 64-bit iDevices vulnerable to checkm8
+https://github.com/Mini-Exploit/ra1nstorm
 
