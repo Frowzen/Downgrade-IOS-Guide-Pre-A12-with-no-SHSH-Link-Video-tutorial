@@ -15,8 +15,15 @@ For more modern devices, it breaks things like faceid.
 Hopefully by now you upvoted OP’s post but have decided this isn’t for you. Or maybe it is for you, because you have a SPARE devices you don’t mind turning into a brick.
 
 Have a good day everyone and Good Luck... :)
+----------------------------
+🔥[[##New video tutorial]## -Youtube July-2022🔥
 
+@@@ If you are from the group that does not understand anything written in this entire guide... This is for you@@@
 
+--[Full Guide] Sunst0rm iOS downgrader tool | Downgrade iOS without SHSH Blobs | 2022 – YouTube
+
+Link: https://youtu.be/P1m_DsoWyb0
+----------------------------
 #WE ALSO HAVE SUNST0RM NOW! IT'S A SCRIPT THAT AUTOMATES THIS ALL!
 https://github.com/mineek/sunst0rm
 
@@ -32,7 +39,9 @@ you do: pyimg4 im4p extract -i kernelcache -o kcache.raw
 If you have A12+ you CANNOT downgrade at all because the device does not have a bootrom exploit!
 iPhone 13 series cannot downgrade to iOS 14 because it does NOT exist for that device
 
-REQUIREMENTS:
+(Please visit each of the links attached to this guide before starting with all the following steps)
+
+#REQUIREMENTS:
 -(MacOS SYSTEM)
 - irecovery
 - futurerestore
@@ -104,10 +113,12 @@ pyimg4 img4 create -p krnlboot.im4p -o krnlboot.img4 -m IM4M
 
 irecovery -f iBSS.img4
 irecovery -f iBEC.img4
-If you have a10 or higher use this:
---------------------------------
+
+If you have A10 or higher use this:
 irecovery -c go
---------------------------------
+
+
+---------------------------------
 irecovery -f devicetree.img4
 irecovery -c devicetree
 # if you have firmware add them here like this:
@@ -120,7 +131,18 @@ irecovery -f rootfs_trustcache.img4
 irecovery -c firmware
 irecovery -f krnlboot.img4
 irecovery -c bootx
+....END
 ---------------------------------
 
 -FrøwZen
+---------------------------------
 
+•things that might interest you•
+
+-A tool for downgrading 64-bit iDevices vulnerable to checkm8
+https://github.com/Mini-Exploit/ra1nstorm
+
+     ##New video tutorial##
+--[Full Guide] Sunst0rm iOS downgrader tool | Downgrade iOS without SHSH Blobs | 2022 – YouTube
+
+Link: https://youtu.be/P1m_DsoWyb0
