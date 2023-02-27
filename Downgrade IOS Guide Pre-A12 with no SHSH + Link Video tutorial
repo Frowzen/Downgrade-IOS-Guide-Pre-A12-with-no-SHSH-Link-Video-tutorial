@@ -159,6 +159,190 @@ Jailbreak.
 {§.New Jailbreak only for Checkm8 Devices (Palera1n) IOS 15.0-16.3 
 LINK: https://github.com/palera1n/palera1n}
 
+NAME
+palera1n — iOS 15+ arm64 iOS/iPadOS jailbreaking tool
+
+SYNOPSIS
+palera1n	[-BcdDEfhlnLOpRsvVI] [-e Boot arguments] [-k Pongo image] [-o overlay file] [-r ramdisk file] [-K KPF file] [-i checkra1n file]
+DESCRIPTION
+palera1n jailbreaks any iOS/iPadOS device with an arm64 (arm64e excluded) on iOS 15+, utilizing the checkm8 bootROM exploit.
+
+palera1n is able to jailbreak the device in fakefs-rootful mode, where / is writable, as well as rootless mode, where / cannot be written to.
+
+Due to the nature of the checkm8 exploit, palera1n is semi-tethered. That is, you must run the palera1n tool after the device reboot in order to enter the jailbroken state. However, it is not required for the device to boot.
+
+On A11 devices, that is, iPhone 8, iPhone 8 Plus and iPhone X, the passcode cannot be used.
+
+On iOS 15, the passcode must be off while jailbroken.
+
+On iOS 16, the passcode must be off since restore, and Reset All Contents and Settings from settings app counts as a restore. A backup may be used in this case.
+
+SUPPORTED DEVICES
+As described above, arm64 iOS/iPadOS 15+ devices are supported, here is an explicit list of supported devicecs:
+
+iPhone 6s
+ 
+iPhone 6s Plus
+ 
+iPhone SE (2016)
+ 
+iPhone 7
+ 
+iPhone 7 Plus
+ 
+iPhone 8
+ 
+iPhone 8 Plus
+ 
+iPhone X
+ 
+iPad mini 4
+ 
+iPad Air 2
+ 
+iPad (5th generation)
+ 
+iPad (6th generation)
+ 
+iPad (7th generation)
+ 
+iPad Pro (9.7")
+ 
+iPad Pro (12.9") (1st generation)
+ 
+iPad Pro (10.5")
+ 
+iPad Pro (12.9") (2nd generation)
+ 
+iPod Touch (7th generation)
+ 
+Support for other arm64 Darwin devices, including Apple TV, HomePod and iBridge on Darwin 21 and above could be added, but they are currently unsupported.
+
+arm64e devices will NEVER be supported.
+
+OPTIONS
+--version
+Prints the program version and exit.
+--force-revert
+Remove the jailbreak while keeping user data. Some jailbreak files may remain after running this command. Additionally, jailbreak apps will remain on the home screen on for a while even when the files are deleted as the icon cache still has their icons. When used with -f, --fakefs, this will actually boot the device in rootless mode then delete the jailbreak files. As a result, using the loader app to install the jailbreak environment is not supported when this option is used together with -f, --fakefs .
+-B, --setup-fakefs-partial
+Like -c, --setup-fakefs but the size of the created fakefs is smaller at the expense of having unwritable parts in rarely-written paths. (good for 16 GB devices)
+-c, --setup-fakefs
+When used with -f, --fakefs, Create the new APFS volume required for rootful. Will fail if one already exists.
+-d, --demote
+Set the effective production fuse to 0, so as to enable hardware debugging features.
+-D, --dfuhelper
+Execute the DFU helper to guide the user into putting the device into DFU mode then exit.
+-e, --boot-args boot arguments
+Specify custom XNU kernel command line. The rootdev=md0 argument is used by palera1n and cannot be overriden. Additionally, the wdt=-1 argument is used during fakefs setup.
+-E, --enter-recovery
+Exit after entering recovery mode.
+-f, --fakefs
+Jailbreak in rootful mode.
+-h, --help
+Prints help text.
+-i, --checkra1n-file checkra1n file
+Specify the path to a custom checkra1n file.
+-k, --override-pongo pongo file
+Override PongoOS image. The raw image, named Pongo.bin when built, should be used. PongoOS 2.6.0 or later is required.
+-K, --override-kpf KPF file
+Override the kernel patchfinder PongoOS module. The module is required to support setting root filesystem in paleinfo with rootfs command. If in doubt, use https://github.com/guacaplushy/PongoOS iOS15 branch or your own fork of it.
+-l, --rootless
+Jailbreak in rootless mode, this is the default when neither -l, --rootless and -f, --fakefs is specified. -L, --jbinit-log-to-file Makes jbinit log to /cores/jbinit.log This file may be viewed from sandboxed applications while jailbroken.
+-n, --exit-recovery
+Exit recovery mode and exit.
+-o, --override-overlay overlay file
+Specify the path to a custom overlay file, which is then mounted onto /cores/binpack during boot, if the default ramdisk is used. The default ramdisk expects the overlay to contain a folder named Applications at the root of it, as well as a dmg named loader.dmg at the root of it. Otherwise, the device will not boot. It is also expected that it contains a shell, a ssh server, and various command line utilities.
+-O, --disable-ohio
+Disable ohio (disable analytics)
+-p, --pongo-shell
+Exit after booting into a clean PongoOS shell
+-P, --pongo-full
+Like -p, --pongo-shell but default images and options have been uploaded and applied respectively.
+-r, --override-ramdisk ramdisk file
+Override the ramdisk. At a very minimum, it should contain a /sbin/launchd as well as a fake dyld /usr/lib/dyld where the logic is expected to be in.
+-R, --reboot-device
+Reboot device in normal mode and exit.
+-s, --safe-mode
+Enter safe mode. An alert will be displayed. Jailbreak daemons nor early boot executable files specified (see FILES section below) will be executed. The loader app and the built in SSH server can still be used, as well as any jailbreak-specific apps you have installed.
+-v, --debug-logging
+Enable debug logging. The option may be repeated for extra verbosity.
+-V, --verbose-boot
+Boots the device in verbose mode, allowing boot logs to be seen.
+-I, --device-info
+Prints info about device and exits.
+ENVIRONMENTAL VARIABLES
+TMPDIR
+This environmental variable should contain the a directory for temporary files. Without the -i, --override-checkra1n option, files must be executable from it as the built-in checkra1n file is extracted and executed here. When not set, /tmp is used.
+EXAMPLES
+To (re-)jailbreak in rootless mode:
+
+palera1n
+To setup fakefs for rootful mode:
+
+palera1n -fc
+After the device has rebooted, follow the following example.
+To re-jailbreak in rootful mode:
+
+palera1n -f
+To remove the jailbreak in rootful mode:
+
+palera1n --force-revert -f
+To remove the jailbreak in rootless mode:
+
+palera1n --force-revert
+To verbose boot in rootful mode:
+
+palera1n -Vf
+To create a partial fakefs with bind mounts:
+
+palera1n -Bf
+To exit recovery mode:
+
+palera1n -n
+CAVEATS
+-v is not a real XNU boot argument. It is intercepted by iBoot. However, since XNU boot arguments are set in PongoOS, which is ran after iBoot has ran, it does nothing. To verbose boot, use the -V, --verbose-boot option when jailbreaking.
+
+Fakefs takes up around 5-10 GB of storage, and take up to 10 minutes to setup.
+
+iOS 15.0 requires DER entitlements, and iOS 15.1 requires hash agility in code signatures. As a result, binaries with the old code signature format need to be resigned with a recent version of the Procursus fork of ldid(1) before they can be ran on a device jailbroken with palera1n .
+
+POST INSTLLATION
+The palera1n loader app will take up to 30 seconds to appear on the homescreen after the device has booted. If it does not appear, you can try using the shortcut:
+
+https://www.icloud.com/shortcuts/8cd5f489c8854ee0ab9ee38f2e62f87d
+
+to open it. After opening the loader app, press install to install a bootstrap as well as the Sileo package manager. You can install other package managers from settings of the loader app.
+
+FILES
+During the jailbreak process, a temporary filesystem is mounted on /cores as a place to stash jailbreak files needed during the boot process. No files are ever written onto the actual disk if you do not use the SSH server to write files or using the loader app to install additional jailbreak files.
+
+/cores
+The location of the temporary filesystem where jailbreak files are stash during boot.
+/cores/jbinit.log
+When -L is used, the log file of jbinit.
+/Library/LaunchDaemons
+The directory where jailbreak-specific launchd.plist(5) property list files should be placed on rootful.
+/var/jb/Library/LaunchDaemons
+The directory where jailbreak-specific launchd.plist(5) property list files should be placed on rootless.
+/etc/rc.d
+The directory where executable filse that needs to be executed during boot, before daemons are launched, are placed rootful. They are executed after all filesystems has been mounted.
+/var/jb/etc/rc.d
+The directory where executable files that needs to be executed during boot, before daemons are launched, are placed on rootless. They are executed after all filesystems has been mounted.
+BUGS
+palera1n may crash if the machine it is running on:
+
+- Has no USB ports
+- Has non-compliant USB devices plugged in
+NOTES
+palera1n injects a dylib into launchd to allow the launchctl runstats command to be used on the device.
+
+SEE ALSO
+launchd(8) launchd.plist(5) ldid(1)
+
+HISTORY
+The palera1n jailbreak was first written by Nebula and Mineek on September 26, 2022, as a shell script. Tweak support with DEVELOPMENT kernels are added on October 2, 2022. RELEASE kernel support is added on November 14, 2022. iOS 16 Support is added on December 13, 2022. Later, the first attempt to rewrite palera1n into C begins on January 01 2023. The palera1n utility described here is the second attempt, which first started on January 16, 2023, using checkra1n 1337 and the plush KPF.
+
 {GUIDE: Soon}
 
 {Possible fixes and missing dependencies: Soon}
