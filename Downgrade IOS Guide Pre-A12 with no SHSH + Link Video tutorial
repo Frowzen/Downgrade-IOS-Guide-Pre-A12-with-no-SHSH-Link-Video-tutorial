@@ -71,7 +71,7 @@ ldid -e ramdisk/usr/sbin/asr > ents.plist
 ldid -Sents.plist patched_asr
 7. Grab your restored_external: cp ramdisk/usr/local/bin/restored_external .
 8. Patch it: restored_external64_patcher restored_external restored_external_patched
-9. Extract the ents: ldid -e restored_external > restored_externel_ents.plist
+9. Extract the ents: ldid -e restored_external > restored_external_ents.plist
 10. Remove the old ones: rm ramdisk/usr/sbin/asr && rm ramdisk/usr/local/bin/restored_external
 11. Resign it: ldid -Srestored_externel_ents.plist restored_external_patched
 12. chmod them: chmod -R 755 restored_external_patched
